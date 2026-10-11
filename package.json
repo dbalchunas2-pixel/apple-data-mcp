@@ -1,0 +1,17 @@
+{
+  "name": "apple-data-mcp",
+  "version": "1.0.0",
+  "description": "Apple data MCP for AI agents: Notes, Calendar, Reminders, iMessage, Mail, Contacts, Obsidian. Read + send via AppleScript, zero heavy deps.",
+  "type": "module",
+  "scripts": {
+    "start": "node src/daemon.js",
+    "start:remote": "APPLE_DATA_MCP_HTTP=1 APPLE_DATA_MCP_REMOTE=1 node src/daemon.js",
+    "start:hub": "node railway-hub.js",
+    "start:tunnel": "node tunnel-client.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "ws": "^8.19.0",
+    "zod": "^3.24.0"
+  }
+}
