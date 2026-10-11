@@ -12,7 +12,7 @@
 //   APPLE_DATA_MCP_KEY - Bearer token for /mcp endpoint auth (client-facing)
 //   TUNNEL_TOKEN   - Bearer token for /tunnel WebSocket auth (Mac-facing)
 //
-// When the Mac is asleep/offline, /mcp returns 503 "Safari host offline".
+// When the Mac is asleep/offline, /mcp returns 503 "Apple data host offline".
 
 import { createServer } from "node:http";
 import { randomUUID } from "node:crypto";
@@ -95,7 +95,7 @@ const httpServer = createServer(async (req, res) => {
       res.setHeader("Content-Type", "application/json");
       res.end(JSON.stringify({
         jsonrpc: "2.0",
-        error: { code: -32000, message: "Safari host offline - Mac tunnel not connected" },
+        error: { code: -32000, message: "Apple data host offline - Mac tunnel not connected" },
         id: body?.id ?? null,
       }));
       return;
@@ -260,7 +260,7 @@ function forwardThroughTunnel(id, request) {
 // Start
 // ---------------------------------------------------------------------------
 httpServer.listen(PORT, "0.0.0.0", () => {
-  console.log(`Safari MCP Railway Hub listening on 0.0.0.0:${PORT}`);
+  console.log(`Apple Data MCP Railway Hub listening on 0.0.0.0:${PORT}`);
   console.log(`  MCP endpoint:   POST/DELETE /mcp`);
   console.log(`  Tunnel endpoint: ws://<host>/tunnel`);
   console.log(`  Health check:    GET /health`);
