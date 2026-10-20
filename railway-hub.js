@@ -4,8 +4,8 @@
 // Architecture:
 //   Littlebird (cloud) --HTTPS POST/DELETE /mcp--> Railway Hub
 //   Railway Hub --WebSocket /tunnel--> Tunnel Client (Mac, launchd)
-//   Tunnel Client --HTTP localhost:9230--> Safari MCP HTTP Daemon
-//   Safari MCP --AppleScript do JavaScript--> Safari Browser
+//   Tunnel Client --HTTP localhost:9230--> Apple Data MCP HTTP Daemon
+//   Apple Data MCP --AppleScript / SQLite--> Apple apps (Messages, Mail, Notes, Calendar, Reminders, Contacts, Obsidian)
 //
 // Env vars:
 //   PORT          - Railway provides this automatically
@@ -30,7 +30,7 @@ let tunnelClient = null;
 // Map<requestId, { resolve, reject, timeout }>
 const pendingRequests = new Map();
 
-const TUNNEL_TIMEOUT_MS = 60_000; // 60s - Safari AppleScript can be slow
+const TUNNEL_TIMEOUT_MS = 60_000; // 60s - AppleScript automation can be slow
 
 // ---------------------------------------------------------------------------
 // HTTP server: MCP endpoint for Littlebird and other cloud MCP clients
