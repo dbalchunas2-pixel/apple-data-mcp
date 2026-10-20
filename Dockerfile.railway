@@ -1,4 +1,4 @@
-# Dockerfile.railway - Railway deployment for the Safari MCP Tunnel Hub
+# Dockerfile.railway - Railway deployment for the Apple Data MCP Tunnel Hub
 # Only needs the railway-hub.js file + ws dependency (not the full apple-data-mcp).
 # The hub is a proxy - it forwards MCP requests through a WebSocket tunnel to the Mac.
 #
@@ -11,12 +11,12 @@ WORKDIR /app
 
 # Create a minimal package.json for the hub only.
 # This avoids the "os": ["darwin"] restriction in the main package.json
-# (Railway runs Linux, the hub doesn't need macOS - it's just a proxy).
+# (Railway runs Linux, the hub does not need macOS - it is just a proxy).
 RUN echo '{"name":"apple-data-mcp-hub","version":"1.0.0","type":"module","dependencies":{"ws":"^8.19.0"}}' > package.json
 
 RUN npm install --production
 
-# Copy only the hub file - we don't need index.js, apple-data.js, etc.
+# Copy only the hub file - we do not need index.js, apple-data.js, etc.
 COPY railway-hub.js ./
 
 # Railway sets PORT automatically. The hub listens on 0.0.0.0:${PORT}.
