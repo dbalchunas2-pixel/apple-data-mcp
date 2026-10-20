@@ -3,8 +3,8 @@
 //
 // Architecture:
 //   Railway Hub <--WebSocket /tunnel-- Tunnel Client (this file, launchd on Mac)
-//   Tunnel Client --HTTP localhost:9230--> Safari MCP HTTP Daemon (spawned locally)
-//   Safari MCP --AppleScript do JavaScript--> Safari Browser
+//   Tunnel Client --HTTP localhost:9230--> Apple Data MCP HTTP Daemon (spawned locally)
+//   Apple Data MCP --AppleScript / SQLite--> Apple apps (Messages, Mail, Notes, Calendar, Reminders, Contacts, Obsidian)
 //
 // Env vars:
 //   APPLE_DATA_MCP_TUNNEL_URL  - wss:// URL of the Railway hub's /tunnel endpoint (REQUIRED)
@@ -316,7 +316,7 @@ process.on("SIGINT", () => shutdown("SIGINT"));
 // ---------------------------------------------------------------------------
 // Start
 // ---------------------------------------------------------------------------
-console.log("Safari MCP Tunnel Client starting...");
+console.log("Apple Data MCP Tunnel Client starting...");
 console.log(`  Tunnel URL:  ${TUNNEL_URL}`);
 console.log(`  Local port:  ${LOCAL_HOST}:${LOCAL_PORT}`);
 console.log(`  Spawn daemon: ${SPAWN_DAEMON ? "yes" : "no"}`);
